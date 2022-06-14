@@ -3,12 +3,12 @@ function getRandomIntInclusive (min, max) {
   const resultAlternative = Math.round(Math.random() * (min - max + 1)) + max;
 
   if (min < 0 || max < 0) {
-    return 'Диапазон может быть только положительный, включая ноль.'
+    return 'Диапазон может быть только положительный, включая ноль.';
   }
   if (min >= max) {
     return resultAlternative;
   }
-  return result
+  return result;
 }
 
 getRandomIntInclusive(10, 100);
@@ -18,7 +18,7 @@ function getRandomFloat (min, max) {
   const resultAlternative = Math.random() * (min - max + 1) + max;
 
   if (min < 0 || max < 0) {
-    return 'Диапазон может быть только положительный, включая ноль.'
+    return 'Диапазон может быть только положительный, включая ноль.';
   }
   if (min >= max) {
     return resultAlternative.toFixed(2);
