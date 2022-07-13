@@ -16,7 +16,7 @@ function getRandomPositiveFloat (a, b, digits = 1) {
 
   const result = Math.random() * (upper - lower) + lower;
 
-    return +result.toFixed(digits);
+  return +result.toFixed(digits);
 }
 
 //Module 4 Task 1
@@ -38,7 +38,7 @@ const SIMILAR_ADS = 10;
 function getAvatarNumber (min, max) {
   const avatarIndex = getRandomPositiveInteger (min, max);
   return (avatarIndex < 10) ? `0${avatarIndex}` : avatarIndex;
-};
+}
 
 const latitude = getRandomPositiveFloat (35.65000, 35.70000, 5);
 
@@ -55,7 +55,7 @@ const createAd = () => {
     },
 
     offer: {
-      title: `Снять жилье неподалеку`,
+      title: "Снять жилье неподалеку",
       address: `${latitude}, ${longitude}`,
       price: getRandomPositiveInteger (1, 100000),
       type: getRandomArrayElement(TYPES),
@@ -64,7 +64,7 @@ const createAd = () => {
       checkin: getRandomArrayElement(CHECKINS_CHECKOUTS),
       checkout: getRandomArrayElement(CHECKINS_CHECKOUTS),
       features: FEATURES.slice(0, getRandomPositiveInteger(1, 6)),
-      description: `Лучшее соотношение цены и качества`,
+      description: "Лучшее соотношение цены и качества",
       photos: PHOTOS.slice(0, getRandomPositiveInteger(1, 3)),
     },
 
@@ -77,4 +77,3 @@ const createAd = () => {
 };
 
 const similarAds = Array.from({length: SIMILAR_ADS}, createAd);
-similarAds;
