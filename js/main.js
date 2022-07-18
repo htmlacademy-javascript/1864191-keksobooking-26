@@ -1,29 +1,105 @@
-function getRandomIntInclusive (min, max) {
-  const result = Math.round(Math.random() * (max - min + 1)) + min;
-  const resultAlternative = Math.round(Math.random() * (min - max + 1)) + max;
-
-  if (min < 0 || max < 0) {
-    return 'Диапазон может быть только положительный, включая ноль.';
-  }
-  if (min >= max) {
-    return resultAlternative;
-  }
-  return result;
+function getRandomPositiveInteger (a, b) {
+  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
+  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
 }
 
-getRandomIntInclusive(10, 100);
-
-function getRandomFloat (min, max) {
-  const result = Math.random() * (max - min + 1) + min;
-  const resultAlternative = Math.random() * (min - max + 1) + max;
-
-  if (min < 0 || max < 0) {
-    return 'Диапазон может быть только положительный, включая ноль.';
-  }
-  if (min >= max) {
-    return resultAlternative.toFixed(2);
-  }
-  return result.toFixed(2);
+function getRandomPositiveFloat (a, b, digits = 5) {
+  const lower = Math.min(Math.abs(a), Math.abs(b));
+  const upper = Math.max(Math.abs(a), Math.abs(b));
+  const result = Math.random() * (upper - lower) + lower;
+  return +result.toFixed(digits);
 }
 
-getRandomFloat(0, 50);
+//Module 4 Task 1
+
+const TYPES = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
+
+const CHECKINS_CHECKOUTS = ['12:00', '13:00', '14:00'];
+
+const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+
+const PHOTOS = [
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'
+];
+
+const PRICE = {
+  min: 0,
+  max: 100000,
+};
+
+const ROOMS = {
+  min: 1,
+  max: 20,
+};
+
+const GUESTS = {
+  min: 1,
+  max: 20,
+};
+
+const LATITUDE = {
+  min: 35.65000,
+  max: 35.70000,
+};
+
+const LONGITUDE = {
+  min: 139.70000,
+  max: 139.80000,
+};
+
+const SIMILAR_ADS = 10;
+
+const getAvatarNumber = (min, max) => {
+  const avatarIndex = getRandomPositiveInteger (min, max);
+  return (avatarIndex < 10) ? `0${avatarIndex}` : avatarIndex;
+}
+
+const getRandomArrayElement = (elements) => {
+  return elements[getRandomPositiveInteger(0, elements.length - 1)];
+};
+
+const getRandomList = (array) =>  {
+  const result = [];
+  const times = getRandomPositiveInteger(1, array.length - 1);
+
+  for (let i = 0; i < times; i++) {
+    result.push(array[getRandomPositiveInteger(0, array.length - 1)]);
+  }
+  return [...new Set(result)];
+};
+
+const createAd = () => {
+  const location = {
+    lat: getRandomPositiveFloat (LATITUDE.min, LATITUDE.max),
+    lng: getRandomPositiveFloat (LONGITUDE.min, LONGITUDE.max),
+  };
+  
+  return {
+    author: {
+      avatar: `img/avatars/user${getAvatarNumber(1, 10)}.png`,
+    },
+
+    offer: {
+      title: 'Снять жилье неподалеку',
+      address: `${location.lat}, ${location.lng}`,
+      price: getRandomPositiveInteger (PRICE.min, PRICE.max),
+      type: getRandomArrayElement(TYPES),
+      rooms: getRandomPositiveInteger (ROOMS.min, ROOMS.max),
+      guests: getRandomPositiveInteger (GUESTS.min, GUESTS.max),
+      checkin: getRandomArrayElement(CHECKINS_CHECKOUTS),
+      checkout: getRandomArrayElement(CHECKINS_CHECKOUTS),
+      features: getRandomList(FEATURES),
+      description: 'Лучшее соотношение цены и качества',
+      photos: getRandomList(PHOTOS),
+    },
+
+    location
+  };
+};
+
+const similarAds = Array.from({length: SIMILAR_ADS}, createAd);
+similarAds;
