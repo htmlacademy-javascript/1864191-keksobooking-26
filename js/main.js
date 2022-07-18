@@ -53,14 +53,10 @@ const LONGITUDE = {
 
 const SIMILAR_ADS = 10;
 
-function getAvatarNumber (min, max) {
+const getAvatarNumber = (min, max) => {
   const avatarIndex = getRandomPositiveInteger (min, max);
   return (avatarIndex < 10) ? `0${avatarIndex}` : avatarIndex;
 }
-
-const latitude = getRandomPositiveFloat (LATITUDE.min, LATITUDE.max);
-
-const longitude = getRandomPositiveFloat (LONGITUDE.min, LONGITUDE.max);
 
 const getRandomArrayElement = (elements) => {
   return elements[getRandomPositiveInteger(0, elements.length - 1)];
@@ -77,14 +73,19 @@ const getRandomList = (array) =>  {
 };
 
 const createAd = () => {
-  const ad = {
+  const location = {
+    lat: getRandomPositiveFloat (LATITUDE.min, LATITUDE.max),
+    lng: getRandomPositiveFloat (LONGITUDE.min, LONGITUDE.max),
+  };
+  
+  return {
     author: {
       avatar: `img/avatars/user${getAvatarNumber(1, 10)}.png`,
     },
 
     offer: {
       title: 'Снять жилье неподалеку',
-      address: `${latitude}, ${longitude}`,
+      address: `${location.lat}, ${location.lng}`,
       price: getRandomPositiveInteger (PRICE.min, PRICE.max),
       type: getRandomArrayElement(TYPES),
       rooms: getRandomPositiveInteger (ROOMS.min, ROOMS.max),
@@ -96,12 +97,8 @@ const createAd = () => {
       photos: getRandomList(PHOTOS),
     },
 
-    location: {
-      lat: latitude,
-      lng: longitude,
-    },
+    location
   };
-  return ad;
 };
 
 const similarAds = Array.from({length: SIMILAR_ADS}, createAd);
