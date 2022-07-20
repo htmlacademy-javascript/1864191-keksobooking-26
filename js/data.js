@@ -42,7 +42,7 @@ const SIMILAR_ADS = 10;
 const getAvatarNumber = (min, max) => {
   const avatarIndex = getRandomPositiveInteger (min, max);
   return (avatarIndex < 10) ? `0${avatarIndex}` : avatarIndex;
-}
+};
 
 const createAd = () => {
   const location = {

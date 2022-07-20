@@ -12,9 +12,7 @@ const getRandomPositiveFloat = (a, b, digits = 5) => {
   return +result.toFixed(digits);
 };
 
-const getRandomArrayElement = (elements) => {
-  return elements[getRandomPositiveInteger(0, elements.length - 1)];
-};
+const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length - 1)];
 
 const getRandomList = (array) =>  {
   const result = [];
