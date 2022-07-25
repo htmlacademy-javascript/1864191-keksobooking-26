@@ -29,3 +29,5 @@ const enableForm = () => {
     element.disabled = false;
   }
 };
+
+export {disableForm, enableForm};
