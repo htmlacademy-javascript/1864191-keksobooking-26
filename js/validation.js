@@ -86,6 +86,27 @@ const getCapacityErrorMessage = () => {
 
 pristine.addValidator(capacity, validateCapacity, getCapacityErrorMessage);
 
+// «Время заезда», «Время выезда»
+
+const timeIn = adForm.querySelector('#timein');
+const timeOut = adForm.querySelector('#timeout');
+
+timeIn.addEventListener('change', () => {
+  timeOut.value = timeIn.value;
+  pristine.validate();
+});
+timeOut.addEventListener('change', () => {
+  timeIn.value = timeOut.value;
+  pristine.validate();
+});
+function validateTime () {
+  return  timeIn.value === timeOut.value;
+}
+function errorTime () {
+  return 'Время должно быть одинаково';
+}
+pristine.addValidator(timeOut, validateTime, errorTime);
+
 adForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   pristine.validate();

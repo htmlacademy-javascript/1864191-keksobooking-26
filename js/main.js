@@ -1,6 +1,7 @@
 import {similarAds} from './data.js';
 import {generatePopup} from './popup.js';
 import {disableForm, enableForm} from './form.js';
+import './validation.js';
 
 const mapCanvas = document.querySelector('#map-canvas');
 const ads = similarAds();
