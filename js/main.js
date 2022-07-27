@@ -1,12 +1,9 @@
-import {similarAds} from './data.js';
-import {generatePopup} from './popup.js';
-import {disableForm, enableForm} from './form.js';
-import './validation.js';
+import {disableForm, initValidation, initPriceSlider} from './form.js';
+import {initMap} from './map.js';
+import {uploadAllPhotos} from './avatar.js';
 
-const mapCanvas = document.querySelector('#map-canvas');
-const ads = similarAds();
-const popup = generatePopup(ads[0]);
-
-mapCanvas.appendChild(popup);
 disableForm();
-enableForm();
+initMap();
+initPriceSlider();
+uploadAllPhotos();
+initValidation();
