@@ -41,7 +41,7 @@ const createCard = ({author, offer}) => {
     description.classList.add('hidden');
   }
 
-  createCapacityMessage(capacity, offer.rooms, offer.guests);
+  capacity.textContent = createCapacityMessage(offer.rooms, offer.guests);
 
   cardElement.querySelector('.popup__avatar').src = author.avatar;
   cardElement.querySelector('.popup__title').textContent = offer.title;

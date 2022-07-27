@@ -42,20 +42,26 @@ const renderPhotos = (block, item, photos) => {
   });
 };
 
-const createCapacityMessage = (tag, rooms, guest) => {
-  if (rooms === 1 && guest === 1) {
-    tag.textContent = `${rooms} комната для ${guest} гостя`;
-  } else if (rooms === 1 && guest === 2) {
-    tag.textContent = `${rooms} комната для ${guest} гостей`;
-  } else if (rooms >=2 && rooms <=4 && guest === 1) {
-    tag.textContent = `${rooms} комнаты для ${guest} гостя`;
-  } else if (rooms >=2 && rooms <=4  && guest >= 2) {
-    tag.textContent = `${rooms} комнаты для ${guest} гостей`;
-  } else if (rooms >=5  && guest === 1) {
-    tag.textContent = `${rooms} комнат для ${guest} гостя`;
-  } else if (rooms >=5  && guest >= 2) {
-    tag.textContent = `${rooms} комнат для ${guest} гостей`;
+const createCapacityMessage = (rooms, guest) => {
+
+  const capacity_rooms = {
+    '1': '1 комната',
+    '2': '2 комнаты',
+    '3': '3 комнаты',
+    '0': '0 комнат'
   }
+
+  const capacity_guests = {
+    '1': 'для 1 гостя',
+    '2': 'для 2 гостей',
+    '3': 'для 3 гостей',
+    '0': 'не для гостей'
+  }
+
+  let roomsText = capacity_rooms[rooms];
+  let guests = capacity_guests[guest];
+
+  return `${roomsText} ${guests}`;
 };
 
 const debounce = (callback, timeoutDelay = DEBOUNCE_DELAY) => {
