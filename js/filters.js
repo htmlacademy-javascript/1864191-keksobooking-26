@@ -37,19 +37,19 @@ const filterByRooms = ({offer}) => roomsFilter.value === DEFAULT_VALUE
 const filterByGuests = ({offer}) => guestsFilter.value === DEFAULT_VALUE
   || offer.guests.toString() === guestsFilter.value;
 
-const filterByFeatures = ({offer}) => {
-  const checkedInputs = Array.from(filtersContainer.querySelectorAll('input[type="checkbox"]:checked'));
+  const filterByFeatures = ({offer}) => {
+    const checkedFilters = featuresFilter.querySelectorAll('input:checked');
 
-  if (!checkedInputs) {
-    return true;
-  }
+    if (!checkedFilters) {
+      return true;
+    }
 
-  if (offer.features){
-    return checkedInputs.every((feature) => offer.features.includes(feature.value));
-  }
+    if (offer.features){
+      return Array.from(checkedFilters).every((feature) => offer.features.includes(feature.value));
+    }
 
-  return false;
-};
+    return false;
+  };
 
 const filterOffers = (element) =>
   filterByType(element)
