@@ -37,19 +37,16 @@ const filterByRooms = ({offer}) => roomsFilter.value === DEFAULT_VALUE
 const filterByGuests = ({offer}) => guestsFilter.value === DEFAULT_VALUE
   || offer.guests.toString() === guestsFilter.value;
 
-  const filterByFeatures = ({offer}) => {
-    const checkedFilters = featuresFilter.querySelectorAll('input:checked');
-
-    if (!checkedFilters) {
-      return true;
-    }
-
-    if (offer.features){
-      return Array.from(checkedFilters).every((feature) => offer.features.includes(feature.value));
-    }
-
-    return false;
-  };
+const filterByFeatures = ({offer}) => {
+  const checkedFilters = featuresFilter.querySelectorAll('input:checked');
+  if (!checkedFilters) {
+    return true;
+  }
+  if (offer.features){
+    return Array.from(checkedFilters).every((feature) => offer.features.includes(feature.value));
+  }
+  return false;
+};
 
 const filterOffers = (element) =>
   filterByType(element)
