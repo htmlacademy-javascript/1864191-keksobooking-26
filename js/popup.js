@@ -13,13 +13,13 @@ const cardTemplate  = document.querySelector('#card')
   .querySelector('.popup');
 
 const createCard = ({author, offer}) => {
-  const cardElement = cardTemplate.cloneNode(true);
-  const featuresContainer = cardElement.querySelector('.popup__features');
+  const card = cardTemplate.cloneNode(true);
+  const featuresContainer = card.querySelector('.popup__features');
   const featuresList = featuresContainer.querySelectorAll('.popup__feature');
-  const photosContainer = cardElement.querySelector('.popup__photos');
+  const photosContainer = card.querySelector('.popup__photos');
   const photoItem = photosContainer.querySelector('.popup__photo');
-  const description = cardElement.querySelector('.popup__description');
-  const capacity = cardElement.querySelector('.popup__text--capacity');
+  const description = card.querySelector('.popup__description');
+  const capacity = card.querySelector('.popup__text--capacity');
 
   if (offer.features) {
     renderFeatures(featuresList, offer.features);
@@ -43,14 +43,14 @@ const createCard = ({author, offer}) => {
 
   capacity.textContent = createCapacityMessage(offer.rooms, offer.guests);
 
-  cardElement.querySelector('.popup__avatar').src = author.avatar;
-  cardElement.querySelector('.popup__title').textContent = offer.title;
-  cardElement.querySelector('.popup__text--address').textContent = offer.address;
-  cardElement.querySelector('.popup__text--price').innerHTML = `${offer.price} <span>₽/ночь</span>`;
-  cardElement.querySelector('.popup__type').textContent = typesTranslation[offer.type];
-  cardElement.querySelector('.popup__text--time').textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
+  card.querySelector('.popup__avatar').src = author.avatar;
+  card.querySelector('.popup__title').textContent = offer.title;
+  card.querySelector('.popup__text--address').textContent = offer.address;
+  card.querySelector('.popup__text--price').innerHTML = `${offer.price} <span>₽/ночь</span>`;
+  card.querySelector('.popup__type').textContent = typesTranslation[offer.type];
+  card.querySelector('.popup__text--time').textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
 
-  return cardElement;
+  return card;
 };
 
 export {createCard};

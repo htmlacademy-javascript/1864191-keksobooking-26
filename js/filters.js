@@ -1,8 +1,8 @@
 import {debounce} from './util.js';
 
-const filtersContainer = document.querySelector('.map__filters');
-
 const DEFAULT_VALUE = 'any';
+
+const filtersContainer = document.querySelector('.map__filters');
 
 const priceForFilter = {
   low: {
